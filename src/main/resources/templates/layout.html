@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Elvis Liberato de Barros" />
-    <link rel="icon" href="/assets/lazuli-doces-min.png" />
+    <link rel="icon" th:href="@{/assets/lazuli-doces-min.png}" />
 
     <!--    Webjars -->
-    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="/webjars/font-awesome/6.0.0/css/all.min.css">
 
     <!--    CSS customizado -->
@@ -22,11 +22,10 @@
 <body>
 
     <header th:replace="fragments/header::header"></header>
-    <main>
-    <div th:replace="fragments/sidebar::sidebar"></div>
-    </main>
 
-    <script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <div th:replace="fragments/sidebar::sidebar"></div>
+
+    <script src="/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
     <script src="/webjars/font-awesome/6.0.0/js/all.min.js"></script>
     <script src="/webjars/font-awesome/6.0.0/js/solid.js"></script>
