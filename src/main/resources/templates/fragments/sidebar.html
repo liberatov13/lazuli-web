@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
 
 <body>
     <div th:fragment="sidebar" id="sidebar" class="container d-inline-block flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
@@ -21,43 +25,43 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a th:href="@{/produto/listar}" class="nav-link link-dark">
                     <i class="fa-solid fa-cake"></i>
                     Produtos
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a href="#" class="nav-link link-dark">
                     <i class="fa-solid fa-cart-shopping"></i>
                     Vendas
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a href="#" class="nav-link link-dark">
                     <i class="fa-solid fa-address-card"></i>
                     Clientes
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a href="#" class="nav-link link-dark">
                     <i class="fa-solid fa-cash-register"></i>
                     Compras
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a href="#" class="nav-link link-dark">
                     <i class="fa-solid fa-circle-dollar-to-slot"></i>
                     Precificação
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a href="#" class="nav-link link-dark">
                     <i class="fa-solid fa-shop"></i>
                     Fornecedores
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link link-dark" data-bs-toggle="list">
+                <a href="#" class="nav-link link-dark">
                     <i class="fa-solid fa-chart-line"></i>
                     Relatórios
                 </a>

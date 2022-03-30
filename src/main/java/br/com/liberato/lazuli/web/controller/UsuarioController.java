@@ -1,4 +1,4 @@
-package br.com.liberato.lazuli.controller;
+package br.com.liberato.lazuli.web.controller;
 
 import br.com.liberato.lazuli.domain.Usuario;
 import br.com.liberato.lazuli.service.UsuarioService;
