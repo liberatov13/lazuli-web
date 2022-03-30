@@ -24,14 +24,10 @@
     <header th:replace="fragments/header::header"></header>
 
     <div class="container-fluid">
-
         <div th:replace="fragments/sidebar::sidebar"></div>
 
-
-        <div class="d-inline-flex flex-column align-top col-9">
-            <div class="align-self-center">
-                <img th:src="@{/assets/lazuli-logo.png}">
-            </div>
+        <div class="container d-inline-flex flex-column align-top col-9">
+                <img th:src="@{/assets/lazuli-logo.png}" class="align-self-center">
         </div>
     </div>
 
