@@ -1,20 +1,7 @@
-body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-}
-
-html {
-  height: -webkit-fill-available;
-}
-
-main {
-  display: flex;
-  flex-wrap: nowrap;
-  height: 100vh;
-  height: -webkit-fill-available;
+#sidebar {
+  min-height: calc(100vh - 93px);
   max-height: 100vh;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto;
 }
 
 .b-example-divider {
