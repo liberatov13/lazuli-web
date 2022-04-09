@@ -13,7 +13,12 @@
 </head>
 <body>
 <div class="container">
-        <form class="form-signin bg-dark bg-gradient rounded text-center" method="post" th:action="@{/login}">
+        <form class="form-signin bg-dark bg-gradient rounded text-center" method="post" action="/usuario/login">
+
+            <div th:if="${erro}" class="alert alert-danger" role="alert">
+                Verifique o usuário e senha
+            </div>
+
             <img th:src="@{/assets/lazuli-logo.png}" alt="Logo da Lazuli Doces" class="w-75">
             <p>
                 <label for="username" class="sr-only">Nome de usuário</label>

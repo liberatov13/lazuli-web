@@ -20,7 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> buscarPorNomeUsuario(String nomeUsuario) {
+    public Optional<Usuario> findByNomeUsuario(String nomeUsuario) {
         return usuarioRepository.findByNomeUsuario(nomeUsuario);
     }
 }

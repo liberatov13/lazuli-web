@@ -8,5 +8,5 @@ public interface UsuarioService {
 
     Optional<Usuario> buscarPorId(Long idUsuario);
 
-    Optional<Usuario> buscarPorNomeUsuario(String nomeUsuario);
+    Optional<Usuario> findByNomeUsuario(String nomeUsuario);
 }
