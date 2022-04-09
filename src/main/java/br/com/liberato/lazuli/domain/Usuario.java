@@ -62,7 +62,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.status;
+        return true;
     }
 
     @Override
@@ -72,6 +72,6 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return this.status;
     }
 }
