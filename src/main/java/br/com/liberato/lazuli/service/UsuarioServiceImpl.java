@@ -21,6 +21,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Optional<Usuario> buscarPorNomeUsuario(String nomeUsuario) {
-        return usuarioRepository.buscarPorNomeUsuario(nomeUsuario);
+        return usuarioRepository.findByNomeUsuario(nomeUsuario);
     }
 }
