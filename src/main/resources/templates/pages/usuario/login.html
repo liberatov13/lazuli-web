@@ -13,8 +13,8 @@
 </head>
 <body>
 <div class="container">
-        <form class="form-signin bg-dark bg-gradient rounded text-center" method="post" action="/login">
-            <img th:src="@{/assets/lazuli-logo.png}" class="w-75">
+        <form class="form-signin bg-dark bg-gradient rounded text-center" method="post" th:action="@{/login}">
+            <img th:src="@{/assets/lazuli-logo.png}" alt="Logo da Lazuli Doces" class="w-75">
             <p>
                 <label for="username" class="sr-only">Nome de usuário</label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="Nome de usuário" required

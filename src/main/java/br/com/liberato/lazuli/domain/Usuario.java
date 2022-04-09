@@ -34,15 +34,15 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Boolean status;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_grupo",
             joinColumns = {@JoinColumn(name = "id_usuario")},
             inverseJoinColumns = {@JoinColumn(name = "id_grupo")})
-    List<GrupoAcesso> gruposAcessos;
+    private List<GrupoAcesso> gruposAcessos;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.gruposAcessos;
     }
 
     @Override

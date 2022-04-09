@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,13 +17,16 @@ public class GrupoAcesso implements GrantedAuthority {
 
     @Id
     @GeneratedValue
-    Long idGrupoAcesso;
+    private Long idGrupoAcesso;
 
     @Column(nullable = false, length = 75)
-    String nome;
+    private String nome;
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    Boolean status;
+    private Boolean status;
+
+    @ManyToMany(mappedBy = "gruposAcessos", fetch = FetchType.EAGER)
+    private List<Usuario> usuarios;
 
 
     @Override
