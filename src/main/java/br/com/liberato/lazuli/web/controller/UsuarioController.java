@@ -24,6 +24,11 @@ public class UsuarioController {
         usuarioService.buscarPorId(idUsuario);
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "/pages/usuario/login";
+    }
+
     @GetMapping("/buscar/nomeUsuario")
     public Usuario buscarPorNomeUsuario(@RequestParam("nomeUsuario") String nomeUsuario) {
         Optional<Usuario> usuarioOptional = usuarioService.buscarPorNomeUsuario(nomeUsuario);
