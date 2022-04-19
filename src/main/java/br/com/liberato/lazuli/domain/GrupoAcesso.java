@@ -25,6 +25,7 @@ public class GrupoAcesso implements GrantedAuthority {
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private Boolean status;
 
+    @ToString.Exclude
     @ManyToMany(mappedBy = "gruposAcessos", fetch = FetchType.EAGER)
     private List<Usuario> usuarios;
 

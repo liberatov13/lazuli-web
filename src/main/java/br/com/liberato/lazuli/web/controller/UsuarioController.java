@@ -19,9 +19,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    // TODO: Corrigir método
     @GetMapping("/{id}")
     public void buscarPorId(@PathVariable("id") Long idUsuario) {
-        System.out.println("Teste");
         usuarioService.buscarPorId(idUsuario);
     }
 

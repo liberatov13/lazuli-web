@@ -1,6 +1,7 @@
 package br.com.liberato.lazuli.web.controller;
 
 import br.com.liberato.lazuli.domain.Usuario;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,9 @@ public class HomeController {
         return "/pages/home";
     }
 
-    // TODO: Retornar usuário logado no HomeController
-    @ModelAttribute
+    @ModelAttribute("usuario")
     public Usuario getUsuarioLogado() {
-        return null;
+        return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }
