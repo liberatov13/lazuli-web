@@ -19,19 +19,10 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    // TODO: Corrigir método
-    @GetMapping("/{id}")
-    public void buscarPorId(@PathVariable("id") Long idUsuario) {
-        usuarioService.buscarPorId(idUsuario);
-    }
-
     @GetMapping("/login")
     public String login(@RequestParam(value = "erro", required = false) Boolean erro, ModelMap modelMap) {
         if (erro != null) {
             modelMap.addAttribute("erro", erro);
-
-            // TODO: Retornar mensagem de erro na pagina ao tentar acessar
-            modelMap.addAttribute("mensagem-erro", modelMap.getAttribute("mensagem-erro"));
         }
         return "/pages/usuario/login";
     }
