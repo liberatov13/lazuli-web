@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class HomeController {
 
     @GetMapping("/")
-    public String getHome(ModelMap modelMap) {
+    public String getHome() {
         return "/pages/home";
     }
 
