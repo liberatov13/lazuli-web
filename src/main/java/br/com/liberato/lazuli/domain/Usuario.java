@@ -1,8 +1,12 @@
 package br.com.liberato.lazuli.domain;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -30,4 +34,44 @@ public class Usuario {
     @Column(nullable = false)
     private Boolean status;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_grupo",
+            joinColumns = {@JoinColumn(name = "id_usuario")},
+            inverseJoinColumns = {@JoinColumn(name = "id_grupo")})
+    private List<GrupoAcesso> gruposAcessos;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.gruposAcessos;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.nomeUsuario;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.status;
+    }
 }

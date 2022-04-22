@@ -15,12 +15,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Optional<Usuario> buscarPorId(Long idUsuario) {
-        Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
-        return usuario;
+        return usuarioRepository.findById(idUsuario);
     }
 
     @Override
-    public Optional<Usuario> buscarPorNomeUsuario(String nomeUsuario) {
-        return usuarioRepository.buscarPorNomeUsuario(nomeUsuario);
+    public Optional<Usuario> findByNomeUsuario(String nomeUsuario) {
+        return usuarioRepository.findByNomeUsuario(nomeUsuario);
     }
 }
