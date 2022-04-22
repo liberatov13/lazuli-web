@@ -24,7 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/usuario/login").permitAll()
-                .failureHandler((request, response, exception) -> response.sendRedirect("/usuario/login?erro=true"))
+                .failureHandler((request, response, exception) -> {
+                    response.sendRedirect("/usuario/login?erro=true");
+                })
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/usuario/logout"));
     }
