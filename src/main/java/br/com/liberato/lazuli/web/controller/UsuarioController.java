@@ -15,7 +15,7 @@ public class UsuarioController {
         if (erro != null) {
             modelMap.addAttribute("erro", erro);
         }
-        return "/pages/usuario/login";
+        return "pages/usuario/login";
     }
 
 }
