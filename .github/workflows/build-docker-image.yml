@@ -32,6 +32,4 @@ jobs:
         username: liberatov13
         password: ${{ secrets.GH_LAZULI_WEB_TOKEN }}
     - name: Publicando Docker Image
-    - run: |
-        docker push liberato/lazuli-web:latest
-        docker push ghcr.io/liberatov13/lazuli-web:latest
+      run: docker push liberato/lazuli-web:latest
