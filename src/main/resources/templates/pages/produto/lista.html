@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      layout:decorate="~{layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazuli Doces | Produtos</title>
+</head>
+<body>
+    <div layout:fragment="page" class="container pt-5">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:classappend="${#strings.toUpperCase(tipoProduto) == 'VENDA' ? 'active' : ''}"
+                   th:href="@{/produto/lista?tipoProduto=venda}">
+                    Produtos de Venda
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                   th:classappend="${#strings.toUpperCase(tipoProduto) == 'INGREDIENTE' ? 'active' : ''}"
+                   th:href="@{/produto/lista?tipoProduto=ingrediente}">
+                    Ingredientes
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tabela de Produtos para Venda -->
+        <table class="table table-striped"
+               th:if="${#strings.toUpperCase(tipoProduto) == 'VENDA'}">
+            <thead th:replace="fragments/produto/tabela-produto::header-tabela
+            (${ {
+                'ID',
+                'Descrição',
+                'Preço de Venda',
+                'Qtd. Estoque'
+            } })">
+            </thead>
+
+            <tbody>
+                <tr th:each="produto : ${produtos}">
+                    <td th:text="${produto.idProduto}"></td>
+                    <td th:text="${produto.descricaoBasica}"></td>
+                    <td th:text="'R$ 2,80'"></td>
+                    <td th:text="${produto.quantidadeEstoque}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Tabela de Ingredientes -->
+        <table class="table table-striped"
+               th:if="${#strings.toUpperCase(tipoProduto) == 'INGREDIENTE'}">
+            <thead th:replace="fragments/produto/tabela-produto::header-tabela
+            (${ {
+                'ID',
+                'Descrição',
+                'Marca',
+                'Qtd. Estoque',
+                'Custo',
+                'Local Compra'
+            } })">
+            </thead>
+
+            <tbody>
+            <tr th:each="produto : ${produtos}">
+                <td th:text="${produto.idProduto}"></td>
+                <td th:text="${produto.descricaoBasica}"></td>
+                <td th:text="${produto.marca != null} ? ${produto.marca.nome} : ''"></td>
+                <td th:text="${produto.quantidadeEstoque} != null ? ${produto.quantidadeEstoque} : ''"></td>
+                <td th:text="'R$ 5,50'"></td>
+                <td th:text="'Higas'"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

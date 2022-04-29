@@ -1,14 +1,12 @@
 package br.com.liberato.lazuli.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -33,7 +31,7 @@ public class Produto {
     private Long codigoBarras;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_prouto", nullable = false)
+    @JoinColumn(name = "id_tipo_produto", nullable = false)
     private TipoProuto tipoProuto;
 
     @ManyToOne
