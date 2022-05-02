@@ -4,6 +4,8 @@ import br.com.liberato.lazuli.domain.Produto;
 import br.com.liberato.lazuli.domain.TipoProuto;
 import br.com.liberato.lazuli.repository.ProdutoRepository;
 import br.com.liberato.lazuli.repository.TipoProdutoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.List;
 @Service
 public class ProdutoService {
 
+    Logger logger = LoggerFactory.getLogger(ProdutoService.class);
+
     @Autowired
     private ProdutoRepository produtoRepository;
     @Autowired
@@ -23,9 +27,8 @@ public class ProdutoService {
         if (nomeTipoProduto != null) {
             try {
                 return findProdutosByNomeTipoProduto(nomeTipoProduto);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                e.printStackTrace();
+            } catch (EntityNotFoundException e) {
+                logger.warn("Não foi possível obter produtos com Tipos de Produto \"{}\"", nomeTipoProduto, e);
                 return Collections.emptyList();
             }
         }
