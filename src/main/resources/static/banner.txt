@@ -1,9 +1,9 @@
-${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK}  _      _ _                    _          _____              ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
-${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |    (_) |                  | |        |  __ \             ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
-${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |     _| |__   ___ _ __ __ _| |_ ___   | |  | | _____   __ ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
-${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |    | | '_ \ / _ \ '__/ _` | __/ _ \  | |  | |/ _ \ \ / / ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
-${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |____| | |_) |  __/ | | (_| | || (_) | | |__| |  __/\ V /  ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
-${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} |______|_|_.__/ \___|_|  \__,_|\__\___/  |_____/ \___| \_/   ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
-${AnsiColor.DEFAULT}${AnsiStyle.BOLD}${AnsiBackground.BLACK} github.com/liberatov13                                       ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK}  _      _ _                    _____              ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |    (_) |                  |  __ \             ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |     _| |__   ___ _ __ __ _| |  | | _____   __ ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |    | | '_ \ / _ \ '__/ _` | |  | |/ _ \ \ / / ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} | |____| | |_) |  __/ | | (_| | |__| |  __/\ V /  ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.RED}${AnsiStyle.BOLD}${AnsiBackground.BLACK} |______|_|_.__/ \___|_|  \__,_|_____/ \___| \_/   ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
+${AnsiColor.DEFAULT}${AnsiStyle.BOLD}${AnsiBackground.BLACK} github.com/liberatov13                            ${AnsiColor.DEFAULT}${AnsiStyle.NORMAL}${AnsiBackground.DEFAULT}
 ${application.title} ${application.version}
-${AnsiColor.GREEN}:: Spring Boot ::${AnsiColor.DEFAULT}                                   (${spring-boot.version})
+${AnsiColor.GREEN}:: Spring Boot ::${AnsiColor.DEFAULT}                          (${spring-boot.version})
