@@ -35,23 +35,39 @@
         <nav>
             <ul class="pagination mt-3 justify-content-end">
                 <li id="primeira-pagina" class="page-item">
-                    <a class="page-link" onclick="alteraPagina(0)">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
+                    <button class="page-link" type="button" data-toggle="tooltip"
+                            data-placement="bottom" title="Ir para primeira página" onclick="alteraPagina(0)">
+                        &laquo;
+                    </button>
                 </li>
-                <li id="pagina-anterior" class="page-item" onclick="alteraPagina(paginacao.number - 1)">
-                    <a  class="page-link" href="#">&lt;</a>
+
+                <li id="pagina-anterior" class="page-item">
+                    <button class="page-link" type="button" data-toggle="tooltip"
+                            data-placement="bottom" title="Ir para página anterior"
+                            onclick="alteraPagina(paginacao.number - 1)">
+                        &lt;
+                    </button>
                 </li>
-                <li id="pagina-atual" class="page-item">
-                    <a class="page-link" href="#">-</a>
+
+                <li id="pagina-atual" class="page-item active">
+                    <button class="page-link" type="button" data-toggle="tooltip"
+                            data-placement="bottom" title="Página atual">
+                        &ndash;
+                    </button>
                 </li>
+
                 <li id="pagina-seguinte" class="page-item">
-                    <a class="page-link" onclick="alteraPagina(paginacao.number + 1)">&gt;</a>
+                    <button class="page-link" type="button" data-toggle="tooltip"
+                            data-placement="bottom" title="Ir para próxima página" onclick="alteraPagina(paginacao.number + 1)">
+                        &gt;
+                    </button>
                 </li>
+
                 <li id="ultima-pagina" class="page-item">
-                    <a class="page-link" onclick="alteraPagina(paginacao.totalPages - 1)">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
+                    <button class="page-link" type="button" data-toggle="tooltip"
+                            data-placement="bottom" title="Ir para última página" onclick="alteraPagina(paginacao.totalPages - 1)">
+                        &raquo;
+                    </button>
                 </li>
             </ul>
         </nav>

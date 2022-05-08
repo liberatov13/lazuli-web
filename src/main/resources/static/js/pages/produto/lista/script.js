@@ -1,8 +1,8 @@
-var url = new URL(window.location.href)
+var url = new URL(window.location.href);
 
 $(function() {
     getPaginas();
-    getAbaSelecionada()
+    getAbaSelecionada();
 })
 
 function getAbaSelecionada() {
@@ -23,7 +23,7 @@ function selecionaAba(tipoProduto) {
 }
 
 function getPaginas() {
-    let controladorPaginas = $('.pagination li a');
+    let controladorPaginas = $('.pagination li button');
     controladorPaginas.eq(2).text(paginacao.number + 1);
     if (paginacao.number === 0) {
         $('#pagina-anterior').addClass('disabled');
