@@ -13,10 +13,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "tipo_produto")
-public class TipoProuto {
+public class TipoProduto {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_tipo_produto")
     private Long idTipoProduto;
 
     @Column(nullable = false)

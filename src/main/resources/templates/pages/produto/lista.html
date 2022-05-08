@@ -6,25 +6,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Lazuli Doces | Produtos</title>
+
+    <script type="application/javascript" th:inline="javascript">
+        const paginacao = /*[[${paginacao}]]*/ "";
+        const tipoProduto = /*[[${tipoProduto}]]*/ "";
+    </script>
+
+    <script th:src="@{/webjars/jquery/jquery.js}"></script>
+    <script th:src="@{/js/pages/produto/lista/script.js}"></script>
 </head>
 <body>
-    <div layout:fragment="page" class="container pt-5">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:classappend="${#strings.toUpperCase(tipoProduto) == 'VENDA' ? 'active' : ''}"
-                   th:href="@{/produto/lista?tipoProduto=venda}">
+    <div layout:fragment="page" id="page" class="container pt-5">
+        <ul id="abas" class="nav nav-tabs">
+            <li id="venda-tab" class="nav-item">
+                <a id="venda-link" class="nav-link"
+                   href="#" onclick="selecionaAba('venda')">
                     Produtos de Venda
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   th:classappend="${#strings.toUpperCase(tipoProduto) == 'INGREDIENTE' ? 'active' : ''}"
-                   th:href="@{/produto/lista?tipoProduto=ingrediente}">
+            <li id="ingrediente-tab" class="nav-item">
+                <a id="ingrediente-link" class="nav-link"
+                   href="#" onclick="selecionaAba('ingrediente')">
                     Ingredientes
                 </a>
             </li>
         </ul>
+
+        <nav>
+            <ul class="pagination mt-3 justify-content-end">
+                <li id="primeira-pagina" class="page-item">
+                    <a class="page-link" onclick="alteraPagina(0)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li id="pagina-anterior" class="page-item" onclick="alteraPagina(paginacao.number - 1)">
+                    <a  class="page-link" href="#">&lt;</a>
+                </li>
+                <li id="pagina-atual" class="page-item">
+                    <a class="page-link" href="#">-</a>
+                </li>
+                <li id="pagina-seguinte" class="page-item">
+                    <a class="page-link" onclick="alteraPagina(paginacao.number + 1)">&gt;</a>
+                </li>
+                <li id="ultima-pagina" class="page-item">
+                    <a class="page-link" onclick="alteraPagina(paginacao.totalPages - 1)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
         <!-- Tabela de Produtos para Venda -->
         <table class="table table-striped"

@@ -32,7 +32,7 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_produto", nullable = false)
-    private TipoProuto tipoProuto;
+    private TipoProduto tipoProduto;
 
     @ManyToOne
     @JoinColumn(name = "id_unidade_medida", nullable = false)
