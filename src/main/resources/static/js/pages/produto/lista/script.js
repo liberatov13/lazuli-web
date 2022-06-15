@@ -16,8 +16,14 @@ function getAbaSelecionada() {
     }
 }
 
+// TODO: Redirecionar para tela de cadastro de produto
 function cadastrarProduto() {
     console.log('Indo para cadastro de produto')
+}
+
+function setQuantidadeItensPorPagina(quantidadeItemPorPagina) {
+    url.searchParams.set('conteudoPorPagina', quantidadeItemPorPagina);
+    window.location.replace(url)
 }
 
 function selecionaAba(tipoProduto) {
@@ -27,13 +33,13 @@ function selecionaAba(tipoProduto) {
 }
 
 function getPaginas() {
-    let controladorPaginas = $('.pagination li button');
-    controladorPaginas.eq(2).text(paginacao.number + 1);
+    let controladorPaginas = $('#controlador-pagina-atual');
+    controladorPaginas.text(paginacao.number + 1);
     if (paginacao.number === 0) {
-        $('#pagina-anterior').addClass('disabled');
+        $('#li-pagina-anterior').addClass('disabled');
     }
     if (paginacao.totalPages - 1 === paginacao.number) {
-        $('#pagina-seguinte').addClass('disabled');
+        $('#li-pagina-seguinte').addClass('disabled');
     }
 }
 

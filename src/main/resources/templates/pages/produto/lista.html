@@ -16,7 +16,7 @@
     <script th:src="@{/js/pages/produto/lista/script.js}"></script>
 </head>
 <body>
-    <div layout:fragment="page" id="page" class="container pt-5">
+    <div layout:fragment="page" id="page" class="container pt-5 mb-3">
         <ul id="abas" class="nav nav-tabs">
             <li id="venda-tab" class="nav-item">
                 <a id="venda-link" class="nav-link"
@@ -36,14 +36,38 @@
             <button class="btn btn-success" onclick="cadastrarProduto()">Cadastrar</button>
 
             <ul class="pagination d-inline-flex float-end justify-content-end">
-                <li id="primeira-pagina" class="page-item">
+                <li id="dropdown-quantidade-item-pagina" class="me-3">
+                    <div class="dropdown">
+                        <button id="button-dropdown-quantidade-item-pagina" class="btn btn-primary dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown"
+                                th:text="${paginacao.content.size} + ' de ' + ${paginacao.totalElements}">
+                            Quantidade
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="setQuantidadeItensPorPagina(10)">10</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="setQuantidadeItensPorPagina(25)">25</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="setQuantidadeItensPorPagina(50)">50</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" onclick="setQuantidadeItensPorPagina(100)">100</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="li-primeira-pagina" class="page-item">
                     <button class="page-link" type="button" data-toggle="tooltip"
                             data-placement="bottom" title="Ir para primeira página" onclick="alteraPagina(0)">
                         &laquo;
                     </button>
                 </li>
 
-                <li id="pagina-anterior" class="page-item">
+                <li id="li-pagina-anterior" class="page-item">
                     <button class="page-link" type="button" data-toggle="tooltip"
                             data-placement="bottom" title="Ir para página anterior"
                             onclick="alteraPagina(paginacao.number - 1)">
@@ -51,14 +75,14 @@
                     </button>
                 </li>
 
-                <li id="pagina-atual" class="page-item active">
-                    <button class="page-link" type="button" data-toggle="tooltip"
+                <li id="li-pagina-atual" class="page-item active">
+                    <button id="controlador-pagina-atual" class="page-link" type="button" data-toggle="tooltip"
                             data-placement="bottom" title="Página atual">
                         &ndash;
                     </button>
                 </li>
 
-                <li id="pagina-seguinte" class="page-item">
+                <li id="li-pagina-seguinte" class="page-item">
                     <button class="page-link" type="button" data-toggle="tooltip"
                             data-placement="bottom" title="Ir para próxima página" onclick="alteraPagina(paginacao.number + 1)">
                         &gt;
