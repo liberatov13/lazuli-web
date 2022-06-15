@@ -16,6 +16,10 @@ function getAbaSelecionada() {
     }
 }
 
+function cadastrarProduto() {
+    console.log('Indo para cadastro de produto')
+}
+
 function selecionaAba(tipoProduto) {
     url.searchParams.set('tipoProduto', tipoProduto.toLowerCase());
     url.searchParams.set('pagina', '0');
