@@ -17,6 +17,7 @@ public class FormaVenda {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_forma_venda")
     private Long idFormaVenda;
 
     private String nome;

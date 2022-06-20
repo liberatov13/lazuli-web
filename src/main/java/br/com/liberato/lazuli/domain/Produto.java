@@ -1,5 +1,6 @@
 package br.com.liberato.lazuli.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Produto {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_produto")
     private Long idProduto;
 
     @Column(name = "descricao_basica", nullable = false, length = 75)
@@ -43,5 +45,9 @@ public class Produto {
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private Boolean status;
+
+    @JsonBackReference
+    @OneToOne(mappedBy = "produtoFinal")
+    private Receita receita;
 
 }
