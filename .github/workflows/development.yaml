@@ -27,7 +27,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: lazuli.jar
-        path: target/
+        path: target
 
   build-docker-image:
     needs: build-project
