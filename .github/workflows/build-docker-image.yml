@@ -25,10 +25,10 @@ jobs:
       run: mvn clean install -DskipTests
 
     - name: Construindo imagem Docker
-    - if: ${{ gitHub.ref_name }} == master
+    - if: ${{ github.ref_name }} == master
       run: |
         docker build -t ghcr.io/liberatov13/lazuli .
-    - if: ${{ gitHub.ref_name }} == master
+    - if: ${{ github.ref_name }} != master
       run: |
         docker build -t ghcr.io/liberatov13/lazuli:dev .
 
