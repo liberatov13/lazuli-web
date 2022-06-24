@@ -3,7 +3,8 @@ name: Main
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build-project:
@@ -22,11 +23,6 @@ jobs:
     - name: "Instalando dependencias e construindo projeto"
       run: mvn clean install -DskipTests
 
-  build-docker-image:
-    needs: build-project
-    runs-on: ubuntu-latest
-
-    steps:
     - if: ${{ github.ref_name }} == master
       name: "Construindo Docker image da master"
       run: docker build -t ghcr.io/liberatov13/lazuli .
