@@ -24,11 +24,13 @@ jobs:
     - name: Instalando dependencias e construindo projeto
       run: mvn clean install -DskipTests
 
-    - name: Construindo imagem Docker
-    - if: ${{ github.ref_name }} == master
+    - name: Construindo imagem Docker da master
+      if: ${{ github.ref_name }} == master
       run: |
         docker build -t ghcr.io/liberatov13/lazuli .
-    - if: ${{ github.ref_name }} != master
+
+    - name: Construindo imagem Docker de dev
+      if: ${{ github.ref_name }} != master
       run: |
         docker build -t ghcr.io/liberatov13/lazuli:dev .
 
