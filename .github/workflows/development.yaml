@@ -1,4 +1,4 @@
-name: Dev
+name: development
 
 on:
   workflow_dispatch:
@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
+
     - name: "Clonando projeto"
       uses: actions/checkout@v3
 
