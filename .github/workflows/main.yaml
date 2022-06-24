@@ -27,12 +27,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: "Construindo Docker image da master"
-      if: ${{ github.ref_name }} == master
+    - if: ${{ github.ref_name }} == master
+      name: "Construindo Docker image da master"
       run: docker build -t ghcr.io/liberatov13/lazuli .
 
-    - name: "Construindo Docker image de dev"
-      if: ${{ github.ref_name }} != master
+    - if: ${{ github.ref_name }} != master
+      name: "Construindo Docker image de dev"
       run: docker build -t ghcr.io/liberatov13/lazuli:dev .
 
     - name: "Fazendo login no GitHub Container Registry"
