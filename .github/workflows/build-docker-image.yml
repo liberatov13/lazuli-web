@@ -25,15 +25,11 @@ jobs:
       run: mvn clean install -DskipTests
 
     - name: Construindo imagem Docker da master
+    - run: docker build -t ghcr.io/liberatov13/lazuli .
       if: ${{ github.ref_name }} == master
-      run: |
-        docker build -t ghcr.io/liberatov13/lazuli .
 
-    - name: Construindo imagem Docker de dev
+    - run: docker build -t ghcr.io/liberatov13/lazuli:dev .
       if: ${{ github.ref_name }} != master
-      run: |
-        docker build -t ghcr.io/liberatov13/lazuli:dev .
-
 
     - name: Fazendo login no GitHub Container Registry
       uses: azure/docker-login@v1
