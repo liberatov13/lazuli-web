@@ -61,37 +61,37 @@
                 </li>
 
                 <li id="li-primeira-pagina" class="page-item">
-                    <button class="page-link" type="button" data-toggle="tooltip"
-                            data-placement="bottom" title="Ir para primeira página" onclick="alteraPagina(0)">
+                    <button class="page-link" type="button" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Ir para primeira página" onclick="alteraPagina(0)">
                         &laquo;
                     </button>
                 </li>
 
                 <li id="li-pagina-anterior" class="page-item">
-                    <button class="page-link" type="button" data-toggle="tooltip"
-                            data-placement="bottom" title="Ir para página anterior"
+                    <button class="page-link" type="button" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Ir para página anterior"
                             onclick="alteraPagina(paginacao.number - 1)">
                         &lt;
                     </button>
                 </li>
 
                 <li id="li-pagina-atual" class="page-item active">
-                    <button id="controlador-pagina-atual" class="page-link" type="button" data-toggle="tooltip"
-                            data-placement="bottom" title="Página atual">
+                    <button id="controlador-pagina-atual" class="page-link" type="button" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Página atual">
                         &ndash;
                     </button>
                 </li>
 
                 <li id="li-pagina-seguinte" class="page-item">
-                    <button class="page-link" type="button" data-toggle="tooltip"
-                            data-placement="bottom" title="Ir para próxima página" onclick="alteraPagina(paginacao.number + 1)">
+                    <button class="page-link" type="button" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Ir para próxima página" onclick="alteraPagina(paginacao.number + 1)">
                         &gt;
                     </button>
                 </li>
 
                 <li id="ultima-pagina" class="page-item">
-                    <button class="page-link" type="button" data-toggle="tooltip"
-                            data-placement="bottom" title="Ir para última página" onclick="alteraPagina(paginacao.totalPages - 1)">
+                    <button class="page-link" type="button" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Ir para última página" onclick="alteraPagina(paginacao.totalPages - 1)">
                         &raquo;
                     </button>
                 </li>
@@ -114,7 +114,49 @@
                 <tr th:each="produto : ${produtos}">
                     <td th:text="${produto.idProduto}"></td>
                     <td th:text="${produto.descricaoBasica}"></td>
-                    <td th:text="'R$ 2,80'"></td>
+                    <td>
+                        <div class="d-inline-flex me-2" th:text="'R$' + ${produto.receita.precosReceita[0].preco}"></div>
+                        <button id="button-mostra-precos" class="d-inline-flex btn btn-primary" type="button"
+                                data-bs-toggle="modal"
+                                th:attr="data-bs-target=${'#modal-precos-produto-'+produto.idProduto}"
+                                data-bs-produto="produto">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+
+                        <!-- Modal de demonstração de preço para o produto-->
+                        <div class="modal fade" th:id="'modal-precos-produto-' + ${produto.idProduto}">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Preços do Produto:</h4>
+                                        <button id="button-fecha-modal" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Forma de venda</th>
+                                                <th>Preço</th>
+                                                <th>Promocional</th>
+                                                <th>Nome da promoção</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="preco : ${produto.receita.precosReceita} ">
+                                                <td th:text="${preco.formaVenda.nome}"></td>
+                                                <td th:text="${preco.preco}"></td>
+                                                <td th:if="${preco.isPromocional}">Sim</td>
+                                                <td th:if="${!preco.isPromocional}">Não</td>
+                                                <td th:text="${preco.nomePromocao}"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td th:text="${produto.quantidadeEstoque}"></td>
                 </tr>
             </tbody>

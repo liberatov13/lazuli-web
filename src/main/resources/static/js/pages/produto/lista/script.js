@@ -43,7 +43,6 @@ function getPaginas() {
     }
 }
 
-
 function alteraPagina(numeroPagina) {
     if (numeroPagina >= 0 && numeroPagina <= paginacao.totalPages - 1) {
         url.searchParams.set("pagina", numeroPagina)
