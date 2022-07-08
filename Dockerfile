@@ -5,4 +5,4 @@ WORKDIR /opt/lazuli-web
 ADD ./target /opt/lazuli-web
 
 ENTRYPOINT [ "java", "-jar", "lazuli-0.0.1-SNAPSHOT.jar" ]
-EXPOSE 8080
+EXPOSE 8098
