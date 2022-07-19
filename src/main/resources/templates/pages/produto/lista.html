@@ -101,7 +101,7 @@
         </nav>
 
         <!-- Tabela de Produtos para Venda -->
-        <table class="table table-striped"
+        <table class="table table-striped text-center"
                th:if="${#strings.toUpperCase(tipoProduto) == 'VENDA'}">
             <thead th:replace="fragments/produto/tabela-produto::header-tabela
             (${ {
@@ -165,7 +165,7 @@
         </table>
 
         <!-- Tabela de Ingredientes -->
-        <table class="table table-striped"
+        <table class="table table-striped text-center"
                th:if="${#strings.toUpperCase(tipoProduto) == 'INGREDIENTE'}">
             <thead th:replace="fragments/produto/tabela-produto::header-tabela
             (${ {
@@ -182,7 +182,7 @@
             <tr th:each="produto : ${produtos}">
                 <td th:text="${produto.idProduto}"></td>
                 <td th:text="${produto.descricaoBasica}"></td>
-                <td th:text="${produto.marca != null} ? ${produto.marca.nome} : ''"></td>
+                <td th:text="${produto.marca != null} ? ${produto.marca.nome} : '-'"></td>
                 <td th:text="${produto.quantidadeEstoque} != null ? ${produto.quantidadeEstoque} : ''"></td>
                 <td th:if="${!produto.comprasProduto.isEmpty()}"
                     th:text="'R$ ' + ${produto.comprasProduto[0].precoDaUnidade}"></td>
