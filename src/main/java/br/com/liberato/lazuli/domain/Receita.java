@@ -29,7 +29,6 @@ public class Receita {
     @Column(name = "tempo_preparo")
     private LocalTime tempoPreparo;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "receita")
     @ToString.Exclude
     private List<PrecoReceita> precosReceita;

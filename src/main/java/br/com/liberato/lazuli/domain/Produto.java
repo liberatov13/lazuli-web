@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -47,7 +48,27 @@ public class Produto {
     private Boolean status;
 
     @JsonBackReference
+    @ToString.Exclude
     @OneToOne(mappedBy = "produtoFinal")
     private Receita receita;
+
+    @JsonBackReference
+    @OrderBy("compra DESC")
+    @OneToMany(mappedBy = "produto")
+    private List<CompraProduto> comprasProduto;
+
+    public Double getCustoMedio() {
+        if (this.comprasProduto.isEmpty()) {
+            return 0.0;
+        }
+        Double total = 0.0;
+        for (CompraProduto compraProduto : this.comprasProduto) {
+            total += compraProduto.getPrecoDaUnidade();
+        }
+        if (total == 0.0) {
+            return 0.0;
+        }
+        return (total / comprasProduto.size());
+    }
 
 }

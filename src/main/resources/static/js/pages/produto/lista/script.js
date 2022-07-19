@@ -3,6 +3,7 @@ var url = new URL(window.location.href);
 $(function() {
     getPaginas();
     getAbaSelecionada();
+    $('[data-bs-toggle="tooltip"]').tooltip();
 })
 
 function getAbaSelecionada() {

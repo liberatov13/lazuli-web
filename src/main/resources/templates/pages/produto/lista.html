@@ -84,14 +84,16 @@
 
                 <li id="li-pagina-seguinte" class="page-item">
                     <button class="page-link" type="button" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Ir para próxima página" onclick="alteraPagina(paginacao.number + 1)">
+                            data-bs-placement="bottom" title="Ir para próxima página"
+                            onclick="alteraPagina(paginacao.number + 1)">
                         &gt;
                     </button>
                 </li>
 
                 <li id="ultima-pagina" class="page-item">
                     <button class="page-link" type="button" data-bs-toggle="tooltip"
-                            data-bs-placement="bottom" title="Ir para última página" onclick="alteraPagina(paginacao.totalPages - 1)">
+                            data-bs-placement="bottom" title="Ir para última página"
+                            onclick="alteraPagina(paginacao.totalPages - 1)">
                         &raquo;
                     </button>
                 </li>
@@ -115,7 +117,7 @@
                     <td th:text="${produto.idProduto}"></td>
                     <td th:text="${produto.descricaoBasica}"></td>
                     <td>
-                        <div class="d-inline-flex me-2" th:text="'R$' + ${produto.receita.precosReceita[0].preco}"></div>
+                        <div class="d-inline-flex me-2" th:text="'R$ ' + ${produto.receita.precosReceita[0].preco}"></div>
                         <button id="button-mostra-precos" class="d-inline-flex btn btn-primary" type="button"
                                 data-bs-toggle="modal"
                                 th:attr="data-bs-target=${'#modal-precos-produto-'+produto.idProduto}"
@@ -145,7 +147,7 @@
                                             <tbody>
                                             <tr th:each="preco : ${produto.receita.precosReceita} ">
                                                 <td th:text="${preco.formaVenda.nome}"></td>
-                                                <td th:text="${preco.preco}"></td>
+                                                <td th:text="'R$ ' + ${preco.preco}"></td>
                                                 <td th:if="${preco.isPromocional}">Sim</td>
                                                 <td th:if="${!preco.isPromocional}">Não</td>
                                                 <td th:text="${preco.nomePromocao}"></td>
@@ -182,8 +184,14 @@
                 <td th:text="${produto.descricaoBasica}"></td>
                 <td th:text="${produto.marca != null} ? ${produto.marca.nome} : ''"></td>
                 <td th:text="${produto.quantidadeEstoque} != null ? ${produto.quantidadeEstoque} : ''"></td>
-                <td th:text="'R$ 5,50'"></td>
-                <td th:text="'Higas'"></td>
+                <td th:if="${!produto.comprasProduto.isEmpty()}"
+                    th:text="'R$ ' + ${produto.comprasProduto[0].precoDaUnidade}"></td>
+                <td th:if="${produto.comprasProduto.isEmpty()}" th:text="'-'" title="Sem Registro"
+                    data-bs-toggle="tooltip" data-bs-placement="top"></td>
+                <td th:if="${!produto.comprasProduto.isEmpty()}"
+                    th:text="${produto.comprasProduto[0].compra.fornecedor.pessoa.nome}"></td>
+                <td th:if="${produto.comprasProduto.isEmpty()}" th:text="'-'" title="Sem Registro"
+                    data-bs-toggle="tooltip" data-bs-placement="top"></td>
             </tr>
             </tbody>
         </table>
