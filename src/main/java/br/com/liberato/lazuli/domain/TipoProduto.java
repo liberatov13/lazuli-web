@@ -12,11 +12,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tipo_prouto")
-public class TipoProuto {
+@Table(name = "tipo_produto")
+public class TipoProduto {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_tipo_produto")
     private Long idTipoProduto;
 
     @Column(nullable = false)

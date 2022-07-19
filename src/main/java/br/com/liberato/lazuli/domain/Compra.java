@@ -1,16 +1,15 @@
 package br.com.liberato.lazuli.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -18,14 +17,9 @@ import java.util.List;
 public class Compra {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_compra")
     private Long idCompra;
-
-    @ManyToMany
-    @JoinTable(name = "compra_produto",
-            joinColumns = {@JoinColumn(name = "id_compra")},
-            inverseJoinColumns = {@JoinColumn(name = "id_produto")})
-    private List<Produto> produtos;
 
     @ManyToOne
     @JoinColumn(name = "id_fornecedor", nullable = false)
@@ -35,6 +29,11 @@ public class Compra {
     private Double valorTotal;
 
     @Column(name = "dt_compra", nullable = false)
-    private LocalDate dataCompra;
+    private LocalDateTime dataCompra;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "compra")
+    @ToString.Exclude
+    private List<CompraProduto> compraProduto;
 
 }

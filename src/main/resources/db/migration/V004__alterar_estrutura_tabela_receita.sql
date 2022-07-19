@@ -7,8 +7,11 @@ ALTER TABLE lazuli.receita_item CHANGE id_receita id_receita_item int auto_incre
 
 
 -- Alterando nome de CONSTRAINTS e FKs
-ALTER TABLE lazuli.receita_item
-RENAME INDEX receita_FK_1 TO receita_item_FK_1;
+alter table receita_item
+    drop foreign key receita_FK_1;
+alter table receita_item
+    add constraint receita_item_FK_1
+        foreign key (id_ingrediente) references produto (id_produto);
 ALTER TABLE lazuli.receita_item
 RENAME INDEX receita_UN TO receita_item_UN;
 

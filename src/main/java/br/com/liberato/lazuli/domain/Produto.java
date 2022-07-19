@@ -1,14 +1,14 @@
 package br.com.liberato.lazuli.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -17,6 +17,7 @@ public class Produto {
 
     @Id
     @GeneratedValue
+    @Column(name = "id_produto")
     private Long idProduto;
 
     @Column(name = "descricao_basica", nullable = false, length = 75)
@@ -33,8 +34,8 @@ public class Produto {
     private Long codigoBarras;
 
     @ManyToOne
-    @JoinColumn(name = "id_tipo_prouto", nullable = false)
-    private TipoProuto tipoProuto;
+    @JoinColumn(name = "id_tipo_produto", nullable = false)
+    private TipoProduto tipoProduto;
 
     @ManyToOne
     @JoinColumn(name = "id_unidade_medida", nullable = false)
@@ -45,5 +46,29 @@ public class Produto {
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)")
     private Boolean status;
+
+    @JsonBackReference
+    @ToString.Exclude
+    @OneToOne(mappedBy = "produtoFinal")
+    private Receita receita;
+
+    @JsonBackReference
+    @OrderBy("compra DESC")
+    @OneToMany(mappedBy = "produto")
+    private List<CompraProduto> comprasProduto;
+
+    public Double getCustoMedio() {
+        if (this.comprasProduto.isEmpty()) {
+            return 0.0;
+        }
+        Double total = 0.0;
+        for (CompraProduto compraProduto : this.comprasProduto) {
+            total += compraProduto.getPrecoDaUnidade();
+        }
+        if (total == 0.0) {
+            return 0.0;
+        }
+        return (total / comprasProduto.size());
+    }
 
 }
