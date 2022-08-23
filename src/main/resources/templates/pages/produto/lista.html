@@ -126,37 +126,8 @@
                         </button>
 
                         <!-- Modal de demonstração de preço para o produto-->
-                        <div class="modal fade" th:id="'modal-precos-produto-' + ${produto.idProduto}">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Preços do Produto:</h4>
-                                        <button id="button-fecha-modal" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <table class="table table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Forma de venda</th>
-                                                <th>Preço</th>
-                                                <th>Promocional</th>
-                                                <th>Nome da promoção</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr th:each="preco : ${produto.receita.precosReceita} ">
-                                                <td th:text="${preco.formaVenda.nome}"></td>
-                                                <td th:text="'R$ ' + ${preco.preco}"></td>
-                                                <td th:if="${preco.isPromocional}">Sim</td>
-                                                <td th:if="${!preco.isPromocional}">Não</td>
-                                                <td th:text="${preco.nomePromocao}"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                        <div th:if="${produto.receita != null and produto.receita.precosReceita != null}" class="modal fade" th:id="'modal-precos-produto-' + ${produto.idProduto}">
+                            <div th:replace="fragments/produto/modal-precos::modal-precos(${produto.receita.precosReceita})"></div>
                         </div>
                     </td>
                     <td th:text="${produto.quantidadeEstoque}"></td>
