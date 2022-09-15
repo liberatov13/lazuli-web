@@ -2,15 +2,14 @@ package br.com.liberato.lazuli.service;
 
 import br.com.liberato.lazuli.domain.Produto;
 import br.com.liberato.lazuli.domain.TipoProduto;
+import br.com.liberato.lazuli.repository.MarcaRepository;
 import br.com.liberato.lazuli.repository.ProdutoRepository;
 import br.com.liberato.lazuli.repository.TipoProdutoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -26,31 +25,35 @@ public class ProdutoService {
     @Autowired
     private TipoProdutoRepository tipoProdutoRepository;
 
-    public Page<Produto> findProdutos(String nomeTipoProduto, String campoOrdenacao, String ordem, Integer pagina,
-                                     Integer quantidadeConteudoPagina) {
-        // Ordenação padrão
-        Sort sort = Sort.by("idProduto").ascending();
-        // Paginação padrão
-        Pageable pageable = Pageable.unpaged();
+    @Autowired
+    private MarcaRepository marcaRepository;
 
+    /**
+     * Realiza uma consulta paginada dos produtos filtrando pelo TipoProduto
+     * @param tipoProduto Tipo de Produto para filtrar
+     * @param paginacao Paginacao utilizada para a consulta
+     * @return Produtos paginados filtrados pelo TipoProduto
+     */
+    public Page<Produto> buscarPorTipoProduto(TipoProduto tipoProduto, Pageable paginacao) {
+        return produtoRepository.findProdutoByTipoProduto(tipoProduto, paginacao);
+    }
 
-        if (campoOrdenacao != null) {
-            Sort.Direction direction = Sort.Direction.fromString(ordem == null ? "asc" : ordem);
-            sort = Sort.by(direction, campoOrdenacao);
+    public Produto salvar(Produto produto) {
+        produto.setDescricaoBasica(produto.getDescricaoBasica().toUpperCase());
+        if (produto.getDescricaoCompleta().isEmpty()) {
+            produto.setDescricaoCompleta(null);
+        } else {
+            produto.setDescricaoCompleta(produto.getDescricaoCompleta().toUpperCase());
         }
-
-        if (quantidadeConteudoPagina != null && pagina != null)
-            pageable = PageRequest.of(pagina, quantidadeConteudoPagina, sort);
-
-        if (nomeTipoProduto != null) {
-            try {
-                return findProdutosByNomeTipoProduto(nomeTipoProduto, pageable);
-            } catch (EntityNotFoundException e) {
-                logger.warn("Não foi possível obter produtos com Tipos de Produto \"{}\"", nomeTipoProduto, e);
-                return Page.empty();
-            }
+        Produto produtoSalvo = null;
+        try {
+            produtoSalvo = produtoRepository.save(produto);
+            logger.info("Produto salvo com sucesso, id: " + produtoSalvo.getIdProduto());
+        } catch (Exception e) {
+            // TODO: Avaliar a possibilidade de retornar uma Exception para o controller
+            logger.warn("Erro ao persistir produto", e);
         }
-        return produtoRepository.findAll(pageable);
+        return produtoSalvo;
     }
 
     private List<Produto> findProdutosByNomeTipoProduto(String nomeTipoProduto) throws EntityNotFoundException {

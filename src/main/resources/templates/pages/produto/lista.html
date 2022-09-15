@@ -20,20 +20,20 @@
         <ul id="abas" class="nav nav-tabs">
             <li id="venda-tab" class="nav-item">
                 <a id="venda-link" class="nav-link"
-                   href="#" onclick="selecionaAba('venda')">
+                   href="#" onclick="alterarAbaTipoProdutoSelecionada('venda')">
                     Produtos de Venda
                 </a>
             </li>
             <li id="ingrediente-tab" class="nav-item">
                 <a id="ingrediente-link" class="nav-link"
-                   href="#" onclick="selecionaAba('ingrediente')">
+                   href="#" onclick="alterarAbaTipoProdutoSelecionada('ingrediente')">
                     Ingredientes
                 </a>
             </li>
         </ul>
 
         <nav class="container-fluid mt-3">
-            <button class="btn btn-success" onclick="cadastrarProduto()">Cadastrar</button>
+            <button class="btn btn-success" onclick="redirecionarTelaCadastroProduto()">Cadastrar</button>
 
             <ul class="pagination d-inline-flex float-end justify-content-end">
                 <li id="dropdown-quantidade-item-pagina" class="me-3">
@@ -117,8 +117,16 @@
                     <td th:text="${produto.idProduto}"></td>
                     <td th:text="${produto.descricaoBasica}"></td>
                     <td>
-                        <div class="d-inline-flex me-2" th:text="'R$ ' + ${produto.receita.precosReceita[0].preco}"></div>
+                        <!-- Caso o produto não tenha receita e preço -->
+                        <div th:if="${produto.receita == null or produto.receita.precosReceita == null}"
+                             class="d-inline-flex me-2">-</div>
+                        <!-- Caso o produto tenha receita e preço -->
+                        <div th:if="${produto.receita != null and produto.receita.precosReceita != null}"
+                             class="d-inline-flex me-2"
+                             th:text="'R$ ' + ${produto.receita.precosReceita[0].preco}">
+                        </div>
                         <button id="button-mostra-precos" class="d-inline-flex btn btn-primary" type="button"
+                                th:if="${produto.receita != null and produto.receita.precosReceita != null}"
                                 data-bs-toggle="modal"
                                 th:attr="data-bs-target=${'#modal-precos-produto-'+produto.idProduto}"
                                 data-bs-produto="produto">

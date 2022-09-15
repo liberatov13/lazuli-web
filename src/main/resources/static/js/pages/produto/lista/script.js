@@ -1,7 +1,7 @@
 var url = new URL(window.location.href);
 
 $(function() {
-    getPaginas();
+    atualizaControladorDePaginacao();
     getAbaSelecionada();
     $('[data-bs-toggle="tooltip"]').tooltip();
 })
@@ -17,9 +17,9 @@ function getAbaSelecionada() {
     }
 }
 
-// TODO: Redirecionar para tela de cadastro de produto
-function cadastrarProduto() {
-    console.log('Indo para cadastro de produto')
+function redirecionarTelaCadastroProduto() {
+    url = window.location.origin + "/produto/cadastrar"
+    window.location.replace(url)
 }
 
 function setQuantidadeItensPorPagina(quantidadeItemPorPagina) {
@@ -27,13 +27,15 @@ function setQuantidadeItensPorPagina(quantidadeItemPorPagina) {
     window.location.replace(url)
 }
 
-function selecionaAba(tipoProduto) {
-    url.searchParams.set('tipoProduto', tipoProduto.toLowerCase());
+function alterarAbaTipoProdutoSelecionada(nomeTipoProduto) {
+    var path = url.pathname.split("/");
+    path[path.length -1] = nomeTipoProduto.toLowerCase();
+    url.pathname = path.join("/");
     url.searchParams.set('pagina', '0');
-    window.location.replace(url)
+    window.location.replace(url);
 }
 
-function getPaginas() {
+function atualizaControladorDePaginacao() {
     let controladorPaginas = $('#controlador-pagina-atual');
     controladorPaginas.text(paginacao.number + 1);
     if (paginacao.number === 0) {
