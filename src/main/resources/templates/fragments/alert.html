@@ -1,0 +1,11 @@
+<div th:if="${mensagemSucesso} != null" id="alert-sucesso" class="alert alert-success alert-dismissible fade show">
+    <i class="fa-solid fa-check-circle"></i>
+    <div class="d-inline" th:text="${mensagemSucesso}"></div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div th:if="${mensagemFalha} != null" id="alert-falha" class="alert alert-danger alert-dismissible fade show">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <div class="d-inline" th:text="${mensagemFalha}"></div>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

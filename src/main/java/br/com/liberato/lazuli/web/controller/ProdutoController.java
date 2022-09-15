@@ -53,7 +53,10 @@ public class ProdutoController {
     }
 
     @GetMapping("/lista")
-    public String redirecionarParaListagemProdutos(ModelMap modelMap) {
+    public String redirecionarParaListagemProdutos(ModelMap modelMap, RedirectAttributes redirectAttributes) {
+        if (!modelMap.isEmpty()) {
+            modelMap.forEach(redirectAttributes::addFlashAttribute);
+        }
         return "redirect:/produto/lista/tipo-produto/venda?pagina=0&conteudoPorPagina=10";
     }
 
@@ -91,7 +94,9 @@ public class ProdutoController {
 
     @PostMapping("/salvar")
     public String salvar(Produto produto, RedirectAttributes redirectAttributes) {
-        produtoService.salvar(produto);
+        Produto produtoSalvo = produtoService.salvar(produto);
+        String mensagem = "Produto " + produtoSalvo.getDescricaoBasica() + " salvo com id " + produtoSalvo.getIdProduto();
+        redirectAttributes.addFlashAttribute("mensagemSucesso", mensagem);
         return "redirect:/produto/lista";
     }
 
