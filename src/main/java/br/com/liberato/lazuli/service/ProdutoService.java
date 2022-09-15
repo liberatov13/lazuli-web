@@ -2,7 +2,6 @@ package br.com.liberato.lazuli.service;
 
 import br.com.liberato.lazuli.domain.Produto;
 import br.com.liberato.lazuli.domain.TipoProduto;
-import br.com.liberato.lazuli.repository.MarcaRepository;
 import br.com.liberato.lazuli.repository.ProdutoRepository;
 import br.com.liberato.lazuli.repository.TipoProdutoRepository;
 import org.slf4j.Logger;
@@ -24,9 +23,6 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
     @Autowired
     private TipoProdutoRepository tipoProdutoRepository;
-
-    @Autowired
-    private MarcaRepository marcaRepository;
 
     /**
      * Realiza uma consulta paginada dos produtos filtrando pelo TipoProduto
