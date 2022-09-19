@@ -1,7 +1,7 @@
-# Lazuli Doces :cupcake:
-###### Projeto em desenvolvimento :hammer_and_wrench:
+# :cupcake: Lazuli Doces :cupcake:
+#### Projeto em desenvolvimento :construction_worker:
 
-## Sobre o projeto
+## Sobre o projeto :scroll:
 Sistema ERP para confeitaria, possuindo as seguintes funcionalidades:
 - [ ] Cadastro de produtos
 - [ ] Controle de vendas e compras
@@ -10,7 +10,7 @@ Sistema ERP para confeitaria, possuindo as seguintes funcionalidades:
 
 Entre outros.
 
-## Tecnologias utilizadas
+## Tecnologias utilizadas :hammer_and_wrench:
 ### Back end
 - Java (v1.8)
 - Spring Boot (v2.6.3)
@@ -32,9 +32,9 @@ Entre outros.
 - MySQL (v8.0.28)
 - Docker (v20.10.18)
 
-## Executando projeto
+## Executando projeto 🧑‍💻
 
-### Máquina local
+### Máquina local :desktop_computer:
 #### Pré-requisitos
 - Java v1.8
 - Maven
@@ -54,7 +54,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-#### Docker
+#### Docker 🐳
 ##### Pré-requisitos
 - Docker
 - Apache Maven
@@ -82,5 +82,5 @@ docker build -t lazuli .
 docker run --name lzl -p 8098:8080 -e DB_HOST=127.0.0.1 -e DB_PORT=3306 -e DB_PASSWORD=123mudar lazuli
 ```
 
-## Autor
+## Autor :pencil2:
 [Elvis Liberato de Barros](https://www.linkedin.com/in/elvisbarros/)
