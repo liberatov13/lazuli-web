@@ -82,6 +82,7 @@ public class ProdutoController {
 
     @GetMapping("/cadastrar")
     public String cadastrar(Produto produto, ModelMap modelMap) {
+        produto.setStatus(true);
         List<Marca> marcas = marcaService.findMarcasAtivas();
         List<TipoProduto> tiposProduto = tipoProdutoService.findAll();
         List<UnidadeMedida> unidadesMedida = unidadeMedidaService.findAll();
