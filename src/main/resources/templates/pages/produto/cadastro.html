@@ -12,13 +12,16 @@
 </head>
 <body>
     <div layout:fragment="page" id="page" class="container pt-5 mb-3">
-        <form th:action="@{/produto/salvar}" th:object="${produto}" method="post" class="row">
+        <form th:action="${produto.idProduto == null} ? @{/produto/salvar} : @{/produto/editar}" th:object="${produto}"
+              method="post" class="row">
 
             <div id="form-group-salvar" class="col-md-6 mb-2">
                 <button id="button-salvar" class="btn btn-success" type="submit">
                     Salvar
                 </button>
             </div>
+
+            <input type="hidden" id="input-id-produto" th:field="*{idProduto}">
 
             <div id="form-group-status" class="form-group col-md-6 mb-2 text-end">
                 <div class="form-check form-check-inline">
