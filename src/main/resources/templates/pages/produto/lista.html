@@ -111,7 +111,8 @@
                 'ID',
                 'Descrição',
                 'Preço de Venda',
-                'Qtd. Estoque'
+                'Qtd. Estoque',
+                ''
             } })">
             </thead>
 
@@ -142,6 +143,12 @@
                         </div>
                     </td>
                     <td th:text="${produto.quantidadeEstoque}"></td>
+                    <td>
+                        <a id="button-editar-produto-venda" type="button" class="btn border border-2" data-bs-toggle="tooltip"
+                                th:href="@{/produto/editar/{id} (id = ${produto.idProduto})}" title="Editar produto">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -156,7 +163,8 @@
                 'Marca',
                 'Qtd. Estoque',
                 'Custo',
-                'Local Compra'
+                'Local Compra',
+                ''
             } })">
             </thead>
 
@@ -174,6 +182,12 @@
                     th:text="${produto.comprasProduto[0].compra.fornecedor.pessoa.nome}"></td>
                 <td th:if="${produto.comprasProduto.isEmpty()}" th:text="'-'" title="Sem Registro"
                     data-bs-toggle="tooltip" data-bs-placement="top"></td>
+                <td>
+                    <a id="button-editar-produto-ingrediente" type="button" class="btn border border-2" data-bs-toggle="tooltip"
+                       th:href="@{/produto/editar/{id} (id = ${produto.idProduto})}" title="Editar produto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -87,6 +87,24 @@ public class ProdutoController {
         return "pages/produto/cadastro";
     }
 
+    @GetMapping("/editar/{id}")
+    public String edicaoDeProduto(@PathVariable("id") Long idProduto, ModelMap modelMap) {
+        modelMap.addAttribute("produto", produtoService.findById(idProduto));
+        return "pages/produto/cadastro";
+    }
+
+    @PostMapping("/editar")
+    public String editar(@Valid Produto produto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "pages/produto/cadastro";
+        }
+
+        Produto produtoSalvo = produtoService.editar(produto);
+        String mensagem = "Produto " + produtoSalvo.getDescricaoBasica() + " editado com sucesso";
+        redirectAttributes.addFlashAttribute("mensagemSucesso", mensagem);
+        return "redirect:/produto/lista";
+    }
+
     @PostMapping("/salvar")
     public String salvar(@Valid Produto produto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {

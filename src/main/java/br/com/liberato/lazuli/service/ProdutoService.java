@@ -52,6 +52,10 @@ public class ProdutoService {
         return produtoSalvo;
     }
 
+    public Produto editar(Produto produto) {
+        return salvar(produto);
+    }
+
     private List<Produto> findProdutosByNomeTipoProduto(String nomeTipoProduto) throws EntityNotFoundException {
         TipoProduto tipo = tipoProdutoRepository.findByNome(nomeTipoProduto)
                 .orElseThrow(() -> new EntityNotFoundException("Tipo de produto com descrição \"" + nomeTipoProduto + "\" não encontrado."));
@@ -62,6 +66,10 @@ public class ProdutoService {
         TipoProduto tipo = tipoProdutoRepository.findByNome(nomeTipoProduto)
                 .orElseThrow(() -> new EntityNotFoundException("Tipo de produto com descrição \"" + nomeTipoProduto + "\" não encontrado."));
         return produtoRepository.findProdutoByTipoProduto(tipo, pageable);
+    }
+
+    public Produto findById(Long idProduto) {
+        return produtoRepository.findById(idProduto).orElseThrow(() -> new RuntimeException("Produto com id não" + idProduto + " encontrado"));
     }
 
 }
