@@ -13,9 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,12 +34,11 @@ public class ProdutoController {
     private MarcaService marcaService;
 
     @GetMapping("/lista/tipo-produto/{nomeTipoProduto}")
-    public String listarProdutosPaginadosPorTipoProduto(@PathVariable String nomeTipoProduto,
-                                                        @RequestParam(required = false) String campoOrdenacao,
-                                                        @RequestParam(required = false) String ordem,
-                                                        @RequestParam(required = false) Integer pagina,
-                                                        @RequestParam(required = false) Integer conteudoPorPagina,
-                                                        ModelMap modelMap) {
+    public String listarProdutosPaginadosPorTipoProduto(
+            @PathVariable String nomeTipoProduto, @RequestParam(required = false) String campoOrdenacao,
+            @RequestParam(required = false) String ordem, @RequestParam(required = false) Integer pagina,
+            @RequestParam(required = false) Integer conteudoPorPagina, ModelMap modelMap) {
+
         if (campoOrdenacao == null)
             campoOrdenacao = "idProduto";
         Sort ordenacao = this.criarOrdenacao(campoOrdenacao, ordem);
@@ -83,18 +84,15 @@ public class ProdutoController {
     @GetMapping("/cadastrar")
     public String cadastrar(Produto produto, ModelMap modelMap) {
         produto.setStatus(true);
-        List<Marca> marcas = marcaService.findMarcasAtivas();
-        List<TipoProduto> tiposProduto = tipoProdutoService.findAll();
-        List<UnidadeMedida> unidadesMedida = unidadeMedidaService.findAll();
-
-        modelMap.addAttribute("marcas", marcas);
-        modelMap.addAttribute("tiposProduto", tiposProduto);
-        modelMap.addAttribute("unidadesMedida", unidadesMedida);
         return "pages/produto/cadastro";
     }
 
     @PostMapping("/salvar")
-    public String salvar(Produto produto, RedirectAttributes redirectAttributes) {
+    public String salvar(@Valid Produto produto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "pages/produto/cadastro";
+        }
+
         Produto produtoSalvo = produtoService.salvar(produto);
         String mensagem = "Produto " + produtoSalvo.getDescricaoBasica() + " salvo com id " + produtoSalvo.getIdProduto();
         redirectAttributes.addFlashAttribute("mensagemSucesso", mensagem);
@@ -106,4 +104,18 @@ public class ProdutoController {
         return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
+    @ModelAttribute("tiposProduto")
+    public List<TipoProduto> getTiposProduto() {
+        return tipoProdutoService.findAll();
+    }
+
+    @ModelAttribute("marcas")
+    public List<Marca> getMarcas() {
+        return marcaService.findMarcasAtivas();
+    }
+
+    @ModelAttribute("unidadesMedida")
+    public List<UnidadeMedida> getUnidadesMedida() {
+        return unidadeMedidaService.findAll();
+    }
 }

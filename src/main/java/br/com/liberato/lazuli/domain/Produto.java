@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -21,9 +24,12 @@ public class Produto {
     @Column(name = "id_produto")
     private Long idProduto;
 
+    @NotBlank
+    @Size(min = 2, max = 75)
     @Column(name = "descricao_basica", nullable = false, length = 75)
     private String descricaoBasica;
 
+    @Size(max = 100)
     @Column(name = "descricao_completa", length = 100)
     private String descricaoCompleta;
 
@@ -34,10 +40,12 @@ public class Produto {
     @Column(name = "cod_barras")
     private Long codigoBarras;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_tipo_produto", nullable = false)
     private TipoProduto tipoProduto;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_unidade_medida", nullable = false)
     private UnidadeMedida unidadeMedida;

@@ -34,7 +34,11 @@
                     Descrição básica
                 </label>
                 <input id="input-descricao-basica" class="form-control text-uppercase" th:field="*{descricaoBasica}"
-                       type="text" placeholder="Chocolate em pó">
+                       type="text" placeholder="Chocolate em pó"
+                       th:classappend="${#fields.hasErrors('descricaoBasica')} ? 'is-invalid'">
+                <div class="invalid-feedback">
+                    <span th:errors="*{descricaoBasica}"></span>
+                </div>
             </div>
 
             <div id="form-group-descricao-completa" class="form-group col-6 mb-2">
@@ -42,7 +46,11 @@
                     Descrição completa
                 </label>
                     <input id="input-descricao-completa" class="form-control text-uppercase" th:field="*{descricaoCompleta}"
-                           type="text" placeholder="Chocolate em pó de 500g">
+                           type="text" placeholder="Chocolate em pó de 500g"
+                           th:classappend="${#fields.hasErrors('descricaoCompleta')} ? 'is-invalid'">
+                <div class="invalid-feedback">
+                    <span th:errors="*{descricaoCompleta}"></span>
+                </div>
             </div>
 
             <div id="form-group-tipo-produto" class="form-group col-md-6 mb-2">
@@ -50,11 +58,16 @@
                     Tipo de produto
                 </label>
                 <select id="dropdown-tipo-produto" class="form-select"
-                        th:field="*{tipoProduto}" onchange="desabilitaCamposDeAcordoTipoProduto()">
+                        th:field="*{tipoProduto}" onchange="desabilitaCamposDeAcordoTipoProduto()"
+                        th:classappend="${#fields.hasErrors('tipoProduto')} ? 'is-invalid'">
                     <option value="" selected>SELECIONE</option>
                     <option th:each="tipoProduto : ${tiposProduto}"
-                            th:value="${tipoProduto.idTipoProduto}" th:text="${tipoProduto.nome}"></option>
+                            th:value="${tipoProduto.idTipoProduto}"
+                            th:text="${tipoProduto.nome}"></option>
                 </select>
+                <div class="invalid-feedback">
+                    <span th:errors="*{tipoProduto}"></span>
+                </div>
             </div>
             
             <div id="form-group-marca" class="form-group col-md-6 mb-2">
@@ -79,12 +92,16 @@
                 <label for="dorpdown-unidade-medida" class="form-label">
                     Unidade de Medida
                 </label>
-                <select id="dorpdown-unidade-medida" class="form-select" th:field="*{unidadeMedida}">
+                <select id="dorpdown-unidade-medida" class="form-select" th:field="*{unidadeMedida}"
+                        th:classappend="${#fields.hasErrors('tipoProduto')} ? 'is-invalid'">
                     <option value="">SELECIONE</option>
                     <option th:each="unidadeMedida : ${unidadesMedida}" th:value="${unidadeMedida.idUnidadeMedida}"
                             th:text="${unidadeMedida.simbolo} + ' (' + ${unidadeMedida.nome} + ')'">
                     </option>
                 </select>
+                <div class="invalid-feedback">
+                    <span th:errors="*{unidadeMedida}"></span>
+                </div>
             </div>
         </form>
     </div>
