@@ -1,9 +1,13 @@
 package br.com.liberato.lazuli.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -16,15 +20,18 @@ import java.util.List;
 public class Produto {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_produto")
     private Long idProduto;
 
+    @NotBlank
+    @Size(min = 2, max = 75)
     @Column(name = "descricao_basica", nullable = false, length = 75)
     private String descricaoBasica;
 
+    @Size(max = 100)
     @Column(name = "descricao_completa", length = 100)
-    private String descicaoCompleta;
+    private String descricaoCompleta;
 
     @ManyToOne
     @JoinColumn(name = "id_marca")
@@ -33,10 +40,12 @@ public class Produto {
     @Column(name = "cod_barras")
     private Long codigoBarras;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_tipo_produto", nullable = false)
     private TipoProduto tipoProduto;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_unidade_medida", nullable = false)
     private UnidadeMedida unidadeMedida;
@@ -57,16 +66,17 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private List<CompraProduto> comprasProduto;
 
+    @JsonIgnore
     public Double getCustoMedio() {
-        if (this.comprasProduto.isEmpty()) {
-            return 0.0;
+        if (this.comprasProduto.isEmpty() || this.comprasProduto == null) {
+            return null;
         }
         Double total = 0.0;
         for (CompraProduto compraProduto : this.comprasProduto) {
             total += compraProduto.getPrecoDaUnidade();
         }
         if (total == 0.0) {
-            return 0.0;
+            return null;
         }
         return (total / comprasProduto.size());
     }

@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Marca {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMarca;
 
     @Column(nullable = false, length = 75)

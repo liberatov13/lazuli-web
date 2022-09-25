@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      layout:decorate="~{layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazuli | Produtos</title>
+
+    <script th:src="@{/webjars/jquery/jquery.js}"></script>
+    <script th:src="@{/js/pages/produto/cadastro/script.js}"></script>
+</head>
+<body>
+    <div layout:fragment="page" id="page" class="container pt-5 mb-3">
+        <form th:action="@{/produto/salvar}" th:object="${produto}" method="post" class="row">
+
+            <div id="form-group-salvar" class="col-md-6 mb-2">
+                <button id="button-salvar" class="btn btn-success" type="submit">
+                    Salvar
+                </button>
+            </div>
+
+            <div id="form-group-status" class="form-group col-md-6 mb-2 text-end">
+                <div class="form-check form-check-inline">
+                    <label for="checkbox-status" class="form-check-label">
+                        Status
+                    </label>
+                    <input id="checkbox-status" th:field="*{status}" type="checkbox" class="form-check-input">
+                </div>
+            </div>
+
+            <div id="form-group-descricao-basica" class="form-group col-6 mb-2">
+                <label class="form-label" for="input-descricao-basica">
+                    Descrição básica
+                </label>
+                <input id="input-descricao-basica" class="form-control text-uppercase" th:field="*{descricaoBasica}"
+                       type="text" placeholder="Chocolate em pó"
+                       th:classappend="${#fields.hasErrors('descricaoBasica')} ? 'is-invalid'">
+                <div class="invalid-feedback">
+                    <span th:errors="*{descricaoBasica}"></span>
+                </div>
+            </div>
+
+            <div id="form-group-descricao-completa" class="form-group col-6 mb-2">
+                <label class="form-label" for="input-descricao-completa">
+                    Descrição completa
+                </label>
+                    <input id="input-descricao-completa" class="form-control text-uppercase" th:field="*{descricaoCompleta}"
+                           type="text" placeholder="Chocolate em pó de 500g"
+                           th:classappend="${#fields.hasErrors('descricaoCompleta')} ? 'is-invalid'">
+                <div class="invalid-feedback">
+                    <span th:errors="*{descricaoCompleta}"></span>
+                </div>
+            </div>
+
+            <div id="form-group-tipo-produto" class="form-group col-md-6 mb-2">
+                <label for="dropdown-tipo-produto" id="label-tipo-produto" class="form-label">
+                    Tipo de produto
+                </label>
+                <select id="dropdown-tipo-produto" class="form-select"
+                        th:field="*{tipoProduto}" onchange="desabilitaCamposDeAcordoTipoProduto()"
+                        th:classappend="${#fields.hasErrors('tipoProduto')} ? 'is-invalid'">
+                    <option value="" selected>SELECIONE</option>
+                    <option th:each="tipoProduto : ${tiposProduto}"
+                            th:value="${tipoProduto.idTipoProduto}"
+                            th:text="${tipoProduto.nome}"></option>
+                </select>
+                <div class="invalid-feedback">
+                    <span th:errors="*{tipoProduto}"></span>
+                </div>
+            </div>
+            
+            <div id="form-group-marca" class="form-group col-md-6 mb-2">
+                <label for="dropdown-marca" class="form-label">
+                    Marca
+                </label>
+                <select id="dropdown-marca" class="form-select" th:field="*{marca}">
+                    <option value="">SELECIONE</option>
+                    <option th:each="marca : ${marcas}" th:text="${marca.nome}"
+                            th:value="${marca.idMarca}"></option>
+                </select>
+            </div>
+
+            <div id="form-group-codigo-barras" class="form-group col-md-6 mb-2">
+                <label for="input-codigo-barras" class="form-label">
+                    Código de barras
+                </label>
+                <input id="input-codigo-barras" class="form-control" th:field="*{codigoBarras}" type="number" name="input-codigo-barras">
+            </div>
+
+            <div id="form-group-unidade-medida" class="form-group col-md-6">
+                <label for="dorpdown-unidade-medida" class="form-label">
+                    Unidade de Medida
+                </label>
+                <select id="dorpdown-unidade-medida" class="form-select" th:field="*{unidadeMedida}"
+                        th:classappend="${#fields.hasErrors('tipoProduto')} ? 'is-invalid'">
+                    <option value="">SELECIONE</option>
+                    <option th:each="unidadeMedida : ${unidadesMedida}" th:value="${unidadeMedida.idUnidadeMedida}"
+                            th:text="${unidadeMedida.simbolo} + ' (' + ${unidadeMedida.nome} + ')'">
+                    </option>
+                </select>
+                <div class="invalid-feedback">
+                    <span th:errors="*{unidadeMedida}"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

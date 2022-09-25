@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class UnidadeMedida {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUnidadeMedida;
 
     @Column(nullable = false, length = 15)
