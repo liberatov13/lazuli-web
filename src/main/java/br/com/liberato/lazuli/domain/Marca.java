@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -19,6 +21,8 @@ public class Marca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMarca;
 
+    @NotBlank
+    @Size(min = 3, max = 75)
     @Column(nullable = false, length = 75)
     private String nome;
 

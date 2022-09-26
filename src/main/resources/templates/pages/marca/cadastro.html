@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      layout:decorate="~{layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lazuli Doces | Marca</title>
+    </head>
+    <body>
+
+        <div layout:fragment="page" id="page" class="container pt-5 mb-3">
+            <form th:action="${marca.idMarca == null} ? @{/marca/salvar} : @{/marca/editar}" method="post" th:object="${marca}" class="row">
+
+                <div id="form-group-salvar" class="col-md-6 mb-2">
+                    <button id="button-salvar" class="btn btn-success" type="submit">
+                        Salvar
+                    </button>
+                </div>
+
+                <div id="form-group-status" class="form-group col-md-6 mb-2 text-end">
+                    <div class="form-check form-check-inline">
+                        <label for="checkbox-status" class="form-check-label">
+                            Status
+                        </label>
+                        <input id="checkbox-status" th:field="*{status}" type="checkbox" class="form-check-input">
+                    </div>
+                </div>
+
+                <input type="hidden" id="input-id-produto" th:field="*{idMarca}">
+
+                <div id="form-group-nome" class="form-group col-6 mb-2">
+                    <label for="input-nome" class="form-label">Nome</label>
+                    <input id="input-nome" class="form-control text-uppercase" th:field="*{nome}" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'">
+                    <div class="invalid-feedback">
+                        <span th:errors="*{nome}"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
