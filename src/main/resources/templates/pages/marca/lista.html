@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      layout:decorate="~{layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazuli Doces | Marcas</title>
+</head>
+<body>
+    <div layout:fragment="page" id="page" class="container pt-5 mb-3">
+
+        <div th:replace="fragments/alert"></div>
+
+        <table class="table table-striped text-center">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="marca : ${marcas}">
+                    <td th:text="${marca.idMarca}"></td>
+                    <td th:text="${marca.nome}"></td>
+                    <td>
+                        <a id="button-editar-marca" type="button" class="btn border border-2" data-bs-toggle="tooltip"
+                           th:href="@{/marca/editar/{id} (id = ${marca.idMarca})}" title="Editar marca">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
