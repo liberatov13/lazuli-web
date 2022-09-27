@@ -21,6 +21,11 @@ public class TipoProdutoService {
         return tipoProdutoRepository.findById(idTipoProduto).orElse(null);
     }
 
+    public TipoProduto salvar(TipoProduto tipoProduto) {
+        tipoProduto.setNome(tipoProduto.getNome().toUpperCase());
+        return tipoProdutoRepository.save(tipoProduto);
+    }
+
     /**
      * Busca o tipo de produto de acordo com o nome
      * @param nomeTipoProduto nome que deve ser buscado

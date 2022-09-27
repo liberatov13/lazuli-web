@@ -36,7 +36,7 @@
         </ul>
 
         <nav class="container-fluid mt-3">
-            <button class="btn btn-success" onclick="redirecionarTelaCadastroProduto()">
+            <button class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cadastrar produto" onclick="redirecionarTelaCadastroProduto()">
                 <i class="fa-solid fa-plus"></i>
                 Produto
             </button>
@@ -50,6 +50,19 @@
                     </li>
                     <li>
                         <a th:href="@{/marca/cadastrar}" class="dropdown-item">Cadastrar</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown d-inline-block">
+                <button id="button-menu-tipo-produto" class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Tipo de Produto
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="button-menu-tipo-produto">
+                    <li>
+                        <a th:href="@{/tipo-produto/listar}" class="dropdown-item">Listar</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/tipo-produto/cadastrar}" class="dropdown-item">Cadastrar</a>
                     </li>
                 </ul>
             </div>

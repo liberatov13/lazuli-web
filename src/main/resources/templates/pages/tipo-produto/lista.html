@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lazuli Doces | Tipo Produto</title>
+</head>
+    <body>
+        <div class="container pt-5 mb-3" layout:fragment="page" id="page">
+
+            <div th:replace="fragments/alert"></div>
+
+            <a class="btn btn-success mb-3" th:href="@{/tipo-produto/cadastrar}">
+                <i class="fa-solid fa-plus"></i>
+                Cadastrar
+            </a>
+
+            <table class="table table-striped text-center">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tipoProduto : ${tiposProduto}">
+                        <td th:text="*{tipoProduto.idTipoProduto}"></td>
+                        <td th:text="*{tipoProduto.nome}"></td>
+                        <td>
+                            <a id="button-editar-tipo-produto" type="button" class="btn border border-2" data-bs-toggle="tooltip"
+                               th:href="@{/tipo-produto/editar/{id} (id = ${tipoProduto.idTipoProduto})}" title="Editar Tipo">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
