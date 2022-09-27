@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -20,6 +22,8 @@ public class TipoProduto {
     @Column(name = "id_tipo_produto")
     private Long idTipoProduto;
 
+    @NotBlank
+    @Size(max = 45)
     @Column(nullable = false)
     private String nome;
 
