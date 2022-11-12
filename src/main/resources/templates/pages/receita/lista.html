@@ -12,14 +12,12 @@
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
-                    <th>Produto Final</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Cone</td>
-                    <td>Cone Di Ferreiro</td>
+                <tr th:each="receita : ${receitas}">
+                    <td th:text="${receita.idReceita}"></td>
+                    <td th:text="${receita.produtoFinal.descricaoBasica}"></td>
                 </tr>
             </tbody>
         </table>

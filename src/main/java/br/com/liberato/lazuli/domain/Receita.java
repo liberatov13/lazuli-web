@@ -20,7 +20,6 @@ public class Receita {
     @Column(name = "id_receita")
     private Integer idReceita;
 
-
     @OneToOne
     @JoinColumn(name = "id_produto_final", referencedColumnName = "id_produto")
     private Produto produtoFinal;
