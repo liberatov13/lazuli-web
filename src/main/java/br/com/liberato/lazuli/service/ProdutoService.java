@@ -53,6 +53,9 @@ public class ProdutoService {
     }
 
     public Produto editar(Produto produto) {
+        if (produto == null) {
+            throw new NullPointerException("Produto não pode ser null");
+        }
         return salvar(produto);
     }
 
