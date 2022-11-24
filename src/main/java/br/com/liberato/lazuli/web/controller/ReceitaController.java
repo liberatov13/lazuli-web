@@ -27,6 +27,11 @@ public class ReceitaController {
         return "pages/receita/lista";
     }
 
+    @GetMapping("/cadastrar")
+    public String cadastrar(Receita receita, ModelMap modelMap) {
+        return "pages/receita/cadastro";
+    }
+
     @ModelAttribute("usuario")
     public Usuario getUsuarioLogado() {
         return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

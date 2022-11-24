@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      layout:decorate="~{layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Lazuli Doces | Receitas</title>
+
+        <script th:src="@{/webjars/jquery/3.6.0/jquery.js}"></script>
+        <script th:src="@{/js/pages/receita/cadastro/script.js}"></script>
+    </head>
+    <body>
+        <div layout:fragment="page" class="container pt-5 mb-3">
+            <form th:object="${receita}" th:action="@{receita/salvar}">
+                <div id="form-group-salvar" class="col-md-6 mb-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Salvar
+                    </button>
+                </div>
+
+                <div id="form-group-produto-final" class="col-md-6">
+                    <label class="form-label" for="input-produto-final">Produto Final</label>
+                    <input class="form-control" id="input-produto-final">
+                </div>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+
+        </script>
+    </body>
+</html>

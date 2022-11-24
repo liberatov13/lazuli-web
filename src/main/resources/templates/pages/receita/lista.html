@@ -7,17 +7,27 @@
 </head>
 <body>
     <div layout:fragment="page" id="page" class="container pt-5 mb-3">
+        <nav class="container-fluid">
+            <a th:href="@{/receita/cadastrar}" id="button-cadastrar-receita" class="btn btn-success" title="Cadastrar Receita" data-bs-toggle="tooltip">Cadastrar</a>
+        </nav>
         <table class="table table-striped text-center">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="receita : ${receitas}">
+                <tr th:each="receita : ${receitas}" class="align-middle">
                     <td th:text="${receita.idReceita}"></td>
                     <td th:text="${receita.produtoFinal.descricaoBasica}"></td>
+                    <td>
+                        <a id="button-editar-receita" type="button" class="btn border border-2" data-bs-toggle="tooltip"
+                           th:href="@{/receita/editar/{id} (id = ${receita.idReceita})}" title="Editar Receita">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
