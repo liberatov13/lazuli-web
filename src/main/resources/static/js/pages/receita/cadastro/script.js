@@ -1,8 +1,26 @@
 $(function () {
     $('#input-produto-final').autocomplete({
-        source: ['Teste', 'Teste2', 'Teste3']
+        source: function (request, response) {
+            buscarProdutoAPI(request, response);
+        },
+        minLength: 2
     })
 })
+
+function buscarProdutoAPI(produtoBuscado, resposta) {
+    $.ajax('/api/produtos?busca='+produtoBuscado.term, {
+        success: function (resultado) {
+            let descricoes = [];
+            resultado.forEach(produto => {
+                    descricoes.push({
+                        value: produto.idProduto,
+                        label: produto.idProduto + ' - ' + produto.descricaoBasica
+                    })
+            })
+            resposta(descricoes)
+        }
+    })
+}
 
 function selecionarProdutoFinal() {
     let inputProdutoSelecionado = $('#input-produto-final-selecionado');
