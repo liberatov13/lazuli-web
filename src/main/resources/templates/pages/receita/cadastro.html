@@ -7,8 +7,10 @@
         <meta charset="UTF-8">
         <title>Lazuli Doces | Receitas</title>
 
-        <script th:src="@{/webjars/jquery/3.6.0/jquery.js}"></script>
+        <link rel="stylesheet" th:href="@{/webjars/jquery-ui/1.13.2/jquery-ui.css}">
+
         <script th:src="@{/js/pages/receita/cadastro/script.js}"></script>
+
     </head>
     <body>
         <div layout:fragment="page" class="container pt-5 mb-3">
@@ -22,13 +24,49 @@
 
                 <div id="form-group-produto-final" class="col-md-6">
                     <label class="form-label" for="input-produto-final">Produto Final</label>
-                    <input class="form-control" id="input-produto-final">
+                    <div class="input-group">
+
+                        <input class="form-control" id="input-produto-final-selecionado"
+                               th:if="${receita.produtoFinal != null}" disabled>
+
+                        <input class="form-control" id="input-produto-final"
+                               th:if="${receita.produtoFinal == null}" th:field="*{produtoFinal}">
+
+                        <button id="button-buscar-produto-final" type="button" class="btn btn-outline-secondary"
+                                onclick="buscarProduto()" th:if="${receita.produtoFinal == null}">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                        <button id="button-remove-produto-final" type="button" class="btn btn-outline-secondary"
+                                onclick="removerProdutoFinal()" th:if="${receita.produtoFinal != null}">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="modal-produtos-encontrados" class="modal">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">
+                                    Produtos Encontrados:
+                                </h3>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Gerado pelo JS -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+                                <button class="btn btn-primary" type="button" onclick="selecionarProdutoFinal()">
+                                    Selecionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
-
-        <script type="text/javascript">
-
-        </script>
     </body>
 </html>
