@@ -75,4 +75,8 @@ public class ProdutoService {
         return produtoRepository.findById(idProduto).orElseThrow(() -> new RuntimeException("Produto com id não" + idProduto + " encontrado"));
     }
 
+    public List<Produto> buscarPorDescricaoBasicaParcial(String descricaoBasica) {
+        return produtoRepository.findAllByDescricaoBasicaContainingIgnoreCase(descricaoBasica);
+    }
+
 }
