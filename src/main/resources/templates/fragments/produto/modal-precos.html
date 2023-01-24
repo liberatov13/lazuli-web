@@ -1,30 +1,30 @@
 <div class="modal-dialog modal-lg modal-dialog-centered" th:fragment="modal-precos(precosReceita)">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title">Preços do Produto:</h4>
-      <button id="button-fecha-modal" class="btn-close" data-bs-dismiss="modal"></button>
-    </div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Preços do Produto:</h4>
+            <button id="button-fecha-modal" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
 
-    <div class="modal-body">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>Forma de venda</th>
-          <th>Preço</th>
-          <th>Promocional</th>
-          <th>Nome da promoção</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="preco : ${precosReceita} ">
-          <td th:text="${preco.formaVenda.nome}"></td>
-          <td th:text="'R$ ' + ${preco.preco}"></td>
-          <td th:if="${preco.isPromocional}">Sim</td>
-          <td th:if="${!preco.isPromocional}">Não</td>
-          <td th:text="${preco.nomePromocao}"></td>
-        </tr>
-        </tbody>
-      </table>
+        <div class="modal-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Forma de venda</th>
+                    <th>Preço</th>
+                    <th>Promocional</th>
+                    <th>Nome da promoção</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="preco : ${precosReceita} ">
+                    <td th:text="${preco.formaVenda.nome}"></td>
+                    <td th:text="'R$ ' + ${preco.preco}"></td>
+                    <td th:if="${preco.isPromocional}">Sim</td>
+                    <td th:if="${!preco.isPromocional}">Não</td>
+                    <td th:text="${preco.nomePromocao}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
