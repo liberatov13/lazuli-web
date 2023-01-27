@@ -23,23 +23,23 @@
                 </div>
 
                 <div id="form-group-produto-final" class="col-md-6">
+
                     <label class="form-label" for="input-produto-final">Produto Final</label>
-                    <div class="input-group">
+                    <div class="input-group" id="div-produto-final-null">
+                        <input class="form-control" id="input-produto-final" th:field="*{produtoFinal}">
 
-                        <input class="form-control" id="input-produto-final-selecionado"
-                               th:if="${receita.produtoFinal != null}" disabled>
+                        <!-- TODO: Implementar busca por modal -->
+                        <!-- <button id="button-buscar-produto-final" type="button" class="btn btn-outline-secondary" -->
+                        <!--         onclick="buscarProdutoModal()" th:if="${receita.produtoFinal == null}"> -->
+                        <!--     <i class="fa-solid fa-magnifying-glass"></i> -->
+                        <!-- </button> -->
+                    </div>
 
-                        <input class="form-control" id="input-produto-final"
-                               th:if="${receita.produtoFinal == null}" th:field="*{produtoFinal}">
-
-                        <button id="button-buscar-produto-final" type="button" class="btn btn-outline-secondary"
-                                onclick="buscarProduto()" th:if="${receita.produtoFinal == null}">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-
+                    <div class="input-group" id="div-produto-final-selecionado" style="display: none;">
+                        <input class="form-control" id="input-produto-final-selecionado" disabled>
                         <button id="button-remove-produto-final" type="button" class="btn btn-outline-secondary"
-                                onclick="removerProdutoFinal()" th:if="${receita.produtoFinal != null}">
-                            <i class="fa-solid fa-trash"></i>
+                                onclick="removerProdutoFinal()">
+                            <i class="fa-sharp fa-solid fa-circle-xmark"></i>
                         </button>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                     Cancelar
                                 </button>
-                                <button class="btn btn-primary" type="button" onclick="selecionarProdutoFinal()">
+                                <button class="btn btn-primary" type="button" onclick="selecionarProdutoFinalPorModal()">
                                     Selecionar
                                 </button>
                             </div>

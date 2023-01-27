@@ -1,14 +1,17 @@
 $(function () {
     $('#input-produto-final').autocomplete({
         source: function (request, response) {
-            buscarProdutoAPI(request, response);
+            buscarProdutoAutoComplete(request, response);
         },
-        minLength: 2
+        minLength: 2,
+        select: function (event, ui) {
+            alterarProdutoFinalSelecionado(ui.item.value, ui.item.label);
+        }
     })
 })
 
-function buscarProdutoAPI(produtoBuscado, resposta) {
-    $.ajax('/api/produtos?busca='+produtoBuscado.term, {
+function buscarProdutoAutoComplete(produtoBuscado, resposta) {
+    $.ajax('/api/produtos?busca=' + produtoBuscado.term, {
         success: function (resultado) {
             let descricoes = [];
             resultado.forEach(produto => {
@@ -22,7 +25,14 @@ function buscarProdutoAPI(produtoBuscado, resposta) {
     })
 }
 
-function selecionarProdutoFinal() {
+function alterarProdutoFinalSelecionado(idProdutoFinal, descricao) {
+    $('#input-produto-final').val(idProdutoFinal);
+    $('#div-produto-final-null').hide();
+    $('#input-produto-final-selecionado').val(descricao);
+    $('#div-produto-final-selecionado').show();
+}
+
+function selecionarProdutoFinalPorModal() {
     let inputProdutoSelecionado = $('#input-produto-final-selecionado');
     inputProdutoSelecionado.val($('input[name=produto-selecionado]:checked').val());
     $('#input-produto-final').hide();
@@ -60,7 +70,7 @@ function gerarModalProdutosEncontrados(resultado) {
     modal.show();
 }
 
-function buscarProduto() {
+function buscarProdutoModal() {
     var produtoBuscado = $('#input-produto-final').val()
     $.ajax('/api/produtos?busca='+produtoBuscado, {
         success: function (resultado) {
@@ -69,5 +79,9 @@ function buscarProduto() {
     })
 }
  function removerProdutoFinal() {
-     receita.produtoFinal = null;
+     $('#input-produto-final').val('');
+     $('#input-produto-final-selecionado').val('');
+
+     $('#div-produto-final-selecionado').hide();
+     $('#div-produto-final-null').show();
  }
